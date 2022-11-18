@@ -32,7 +32,9 @@
         ],
         "no-duplicate-imports": "error",
         "react/display-name": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/ban-ts-ignore": "off"
     },
     "settings": {
         "import/resolver": {
