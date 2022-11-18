@@ -60,7 +60,7 @@ const ArrowStyle = styled('span')<ArrowStyleProps>(({ arrow, theme }) => {
       zIndex: 1,
       width: SIZE,
       height: SIZE,
-      content: "''",
+      content: '\'\'',
       display: 'block',
       position: 'absolute',
       transform: 'rotate(-135deg)',

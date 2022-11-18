@@ -13,7 +13,7 @@ const FORMAT_PDF = ['pdf'];
 const FORMAT_PHOTOSHOP = ['psd'];
 const FORMAT_ILLUSTRATOR = ['ai', 'esp'];
 
-export function getFileType(fileUrl: string = '') {
+export function getFileType(fileUrl = '') {
   return (fileUrl && fileUrl.split('.').pop()) || '';
 }
 

@@ -30,7 +30,7 @@ export const company = [
   'Kuhn, Osinski and Morar',
   'Schmitt Inc',
   'Breitenberg - Rosenbaum',
-  "O'Keefe, Schneider and Mraz",
+  'O\'Keefe, Schneider and Mraz',
   'Rohan, Langworth and Kling',
   'Morar and Sons',
   'Mraz LLC',

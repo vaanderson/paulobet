@@ -30,7 +30,7 @@ export function fDateTimeAppointment(date: Date | string | number) {
 }
 
 export function fDatePostFormat(date: Date | string | number) {
-  return format(new Date(date), "yyyy-MM-dd'T'HH:mm:ss'Z'")
+  return format(new Date(date), 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'')
 }
 
 

@@ -56,7 +56,7 @@ export const countries = [
     latlng: [15, 48],
     name: 'Yemen',
     country_code: 'YE',
-    capital: "Sana'a",
+    capital: 'Sana\'a',
     photo: _mock.image.feed(7),
   },
   {

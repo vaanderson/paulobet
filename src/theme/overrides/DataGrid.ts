@@ -8,7 +8,7 @@ export default function DataGrid(theme: Theme) {
       styleOverrides: {
         root: {
           borderRadius: 0,
-          border: `1px solid transparent`,
+          border: '1px solid transparent',
           '& .MuiTablePagination-root': {
             borderTop: 0,
           },

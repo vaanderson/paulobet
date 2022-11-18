@@ -36,7 +36,7 @@ const RootStyle = styled('span')(
       alignItems: 'center',
       justifyContent: 'center',
       '&:before, &:after': {
-        content: "''",
+        content: '\'\'',
         borderRadius: 1,
         backgroundColor: theme.palette.common.white,
       },

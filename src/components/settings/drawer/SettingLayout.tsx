@@ -123,7 +123,7 @@ function HorizontalBox({ isSelected }: LayoutBoxProps) {
         <Box
           sx={{
             ...style,
-            width: `calc(100% - 26px)`,
+            width: 'calc(100% - 26px)',
             border: (theme) => `dashed 1px ${theme.palette.divider}`,
             bgcolor: (theme) => alpha(theme.palette.text.disabled, 0.08),
             ...(isSelected && {

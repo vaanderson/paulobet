@@ -20,32 +20,32 @@ import {
 const initialState: SettingsContextProps = {
   ...defaultSettings,
   // Mode
-  onToggleMode: () => { },
-  onChangeMode: () => { },
+  onToggleMode: () => undefined,
+  onChangeMode: () => undefined,
 
   // Direction
-  onToggleDirection: () => { },
-  onChangeDirection: () => { },
-  onChangeDirectionByLang: () => { },
+  onToggleDirection: () => undefined,
+  onChangeDirection: () => undefined,
+  onChangeDirectionByLang: () => undefined,
 
   // Layout
-  onToggleLayout: () => { },
-  onChangeLayout: () => { },
+  onToggleLayout: () => undefined,
+  onChangeLayout: () => undefined,
 
   // Contrast
-  onToggleContrast: () => { },
-  onChangeContrast: () => { },
+  onToggleContrast: () => undefined,
+  onChangeContrast: () => undefined,
 
   // Color
-  onChangeColor: () => { },
+  onChangeColor: () => undefined,
   setColor: defaultPreset,
   colorOption: [],
 
   // Stretch
-  onToggleStretch: () => { },
+  onToggleStretch: () => undefined,
 
   // Reset
-  onResetSetting: () => { },
+  onResetSetting: () => undefined,
 };
 
 const SettingsContext = createContext(initialState);
