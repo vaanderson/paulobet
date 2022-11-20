@@ -1,0 +1,32 @@
+{
+    "theme_color": "#027B5B",
+    "background_color": "#027B5B",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "PauloBET",
+    "short_name": "PauloBET",
+    "description": "Participe de bol\u00f5es entre amigos e divirta-se.",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

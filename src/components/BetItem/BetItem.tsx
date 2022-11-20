@@ -1,6 +1,7 @@
 import React from 'react'
 import { Chip, Card, CardContent, Box, Paper, Typography } from '@mui/material'
 import { Bet } from 'src/@types/Bet.types'
+import { Countries } from 'src/constants/teams'
 
 interface BetItemProps {
   bet: Bet
@@ -17,8 +18,8 @@ const BetItem = ({ bet }: BetItemProps) => {
       />
     </Box>
   )
+
   const matchSplit = bet.matchId.split('-')
-  console.log(matchSplit)
   return (
     <Card>
       <CardContent>
@@ -47,7 +48,7 @@ const BetItem = ({ bet }: BetItemProps) => {
 
               <Typography variant='h5'>{bet.home}</Typography>
               <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-                {matchSplit[0]}
+                {Countries[matchSplit[0] as keyof typeof Countries]}
               </Typography>
             </Box>
             <Box>
@@ -62,7 +63,7 @@ const BetItem = ({ bet }: BetItemProps) => {
 
               <Typography variant='h5'>{bet.visitors}</Typography>
               <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-                {matchSplit[1]}
+                {Countries[matchSplit[1] as keyof typeof Countries]}
               </Typography>
             </Box>
           </Paper>

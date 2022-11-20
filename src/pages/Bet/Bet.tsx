@@ -5,16 +5,12 @@ import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs'
 import { Grid, Stack } from '@mui/material'
 import api from 'src/services/axios'
 import AuthContext from 'src/contexts/AuthContext'
-import { useNavigate, useParams } from 'react-router'
-import { RankingType } from 'src/@types/Rankings.types'
-import UserBet from 'src/components/UserBet'
-import orderBy from 'lodash/orderBy'
+import { useParams } from 'react-router'
 import { BetType } from 'src/@types/Bet.types'
 import BetItem from 'src/components/BetItem/BetItem'
 const Bet = () => {
   const { leagueId, userId } = useParams()
 
-  const navigate = useNavigate()
   const { token } = React.useContext(AuthContext)
   const [betData, setBetData] = React.useState<BetType>()
 

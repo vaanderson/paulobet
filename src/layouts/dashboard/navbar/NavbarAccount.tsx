@@ -25,7 +25,6 @@ type Props = {
 
 export default function NavbarAccount({ isCollapse }: Props) {
   const { token } = React.useContext(AuthContext)
-  console.log(token)
   return (
     <Link underline='none' color='inherit'>
       <RootStyle
