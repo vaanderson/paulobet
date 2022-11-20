@@ -1,28 +1,27 @@
 // @mui
-import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar } from '@mui/material';
+import { styled } from '@mui/material/styles'
+import { Box, Stack, AppBar, Toolbar } from '@mui/material'
 // hooks
-import useOffSetTop from '../../../hooks/useOffSetTop';
-import useResponsive from '../../../hooks/useResponsive';
+import useOffSetTop from '../../../hooks/useOffSetTop'
+import useResponsive from '../../../hooks/useResponsive'
 // utils
-import cssStyles from '../../../utils/cssStyles';
+import cssStyles from '../../../utils/cssStyles'
 // config
-import { HEADER, NAVBAR } from '../../../config';
+import { HEADER, NAVBAR } from '../../../config'
 // components
-import Logo from '../../../components/Logo';
-import Iconify from '../../../components/Iconify';
-import { IconButtonAnimate } from '../../../components/animate';
+import Logo from '../../../components/Logo'
+import Iconify from '../../../components/Iconify'
+import { IconButtonAnimate } from '../../../components/animate'
 //
-import Searchbar from './Searchbar';
-import AccountPopover from './AccountPopover';
+import AccountPopover from './AccountPopover'
 
 // ----------------------------------------------------------------------
 
 type RootStyleProps = {
-  isCollapse: boolean;
-  isOffset: boolean;
-  verticalLayout: boolean;
-};
+  isCollapse: boolean
+  isOffset: boolean
+  verticalLayout: boolean
+}
 
 const RootStyle = styled(AppBar, {
   shouldForwardProp: (prop) =>
@@ -50,24 +49,24 @@ const RootStyle = styled(AppBar, {
       backgroundColor: theme.palette.background.default,
     }),
   },
-}));
+}))
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  onOpenSidebar: VoidFunction;
-  isCollapse?: boolean;
-  verticalLayout?: boolean;
-};
+  onOpenSidebar: VoidFunction
+  isCollapse?: boolean
+  verticalLayout?: boolean
+}
 
 export default function DashboardHeader({
   onOpenSidebar,
   isCollapse = false,
   verticalLayout = false,
 }: Props) {
-  const isOffset = useOffSetTop(HEADER.DASHBOARD_DESKTOP_HEIGHT) && !verticalLayout;
+  const isOffset = useOffSetTop(HEADER.DASHBOARD_DESKTOP_HEIGHT) && !verticalLayout
 
-  const isDesktop = useResponsive('up', 'lg');
+  const isDesktop = useResponsive('up', 'lg')
 
   return (
     <RootStyle isCollapse={isCollapse} isOffset={isOffset} verticalLayout={verticalLayout}>
@@ -81,17 +80,16 @@ export default function DashboardHeader({
 
         {!isDesktop && (
           <IconButtonAnimate onClick={onOpenSidebar} sx={{ mr: 1, color: 'text.primary' }}>
-            <Iconify icon="eva:menu-2-fill" />
+            <Iconify icon='eva:menu-2-fill' />
           </IconButtonAnimate>
         )}
 
-        <Searchbar />
         <Box sx={{ flexGrow: 1 }} />
 
-        <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
+        <Stack direction='row' alignItems='center' spacing={{ xs: 0.5, sm: 1.5 }}>
           <AccountPopover />
         </Stack>
       </Toolbar>
     </RootStyle>
-  );
+  )
 }

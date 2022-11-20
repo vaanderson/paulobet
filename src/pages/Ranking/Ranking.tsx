@@ -9,13 +9,17 @@ import { useNavigate, useParams } from 'react-router'
 import { RankingType } from 'src/@types/Rankings.types'
 import UserBet from 'src/components/UserBet'
 import orderBy from 'lodash/orderBy'
+import TextField from '@mui/material/TextField'
+import InputAdornment from '@mui/material/InputAdornment'
+import { Icon } from '@iconify/react'
+
 const Ranking = () => {
   const { leagueId } = useParams()
 
   const navigate = useNavigate()
   const { token } = React.useContext(AuthContext)
   const [rankingData, setRankingData] = React.useState<RankingType>()
-
+  const [userSearch, setUserSearch] = React.useState('')
   const fetchRanking = () => {
     api
       .get(`/ranking/${leagueId}?token=${token.token}&login=${token.login}`)
@@ -39,16 +43,33 @@ const Ranking = () => {
           links={[{ name: 'Bolão', href: '/' }, { name: 'Rankings' }, { name: 'Todos' }]}
         />
         <Grid container>
+          <Grid item xs={12} mb={5}>
+            <TextField
+              fullWidth
+              onChange={(event) => setUserSearch(event.target.value)}
+              id='input-with-icon-textfield'
+              label='Pesquisar usuário'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>
+                    <Icon icon='material-symbols:search' />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
           <Grid item xs={12} md={12} lg={12}>
             <Stack spacing={3}>
-              {orderBy(rankingData?.ranking, ['score'], ['desc']).map((ranking, index) => (
-                <UserBet
-                  onClick={() => navigate(`/bets/${leagueId}/${ranking.userId}`)}
-                  key={ranking.userId}
-                  position={index + 1}
-                  userRanking={ranking}
-                />
-              ))}
+              {orderBy(rankingData?.ranking, ['score'], ['desc'])
+                .filter((item) => item.userId.toLowerCase().includes(userSearch.toLowerCase()))
+                .map((ranking, index) => (
+                  <UserBet
+                    onClick={() => navigate(`/bets/${leagueId}/${ranking.userId}`)}
+                    key={ranking.userId}
+                    position={index + 1}
+                    userRanking={ranking}
+                  />
+                ))}
             </Stack>
           </Grid>
         </Grid>

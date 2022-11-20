@@ -1,6 +1,5 @@
-import { Stack, InputAdornment, TextField, MenuItem } from '@mui/material';
-import Iconify from '../Iconify';
-
+import { Stack, InputAdornment, TextField, MenuItem } from '@mui/material'
+import Iconify from '../Iconify'
 
 // ----------------------------------------------------------------------
 interface statusOptions {
@@ -8,12 +7,12 @@ interface statusOptions {
   value: string
 }
 type Props = {
-  optionsStatus: statusOptions[];
-  filterName: string;
-  filterStatus: string;
-  onFilterName: (value: string) => void;
-  onFilterStatus: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
+  optionsStatus: statusOptions[]
+  filterName: string
+  filterStatus: string
+  onFilterName: (value: string) => void
+  onFilterStatus: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 export default function UserTableToolbar({
   filterName,
@@ -27,7 +26,7 @@ export default function UserTableToolbar({
       <TextField
         fullWidth
         select
-        label="Status"
+        label='Status'
         value={filterStatus}
         onChange={onFilterStatus}
         SelectProps={{
@@ -56,23 +55,6 @@ export default function UserTableToolbar({
           </MenuItem>
         ))}
       </TextField>
-
-      <TextField
-        fullWidth
-        value={filterName}
-        onChange={(event) => onFilterName(event.target.value)}
-        placeholder="Pesquisar paciente"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Iconify
-                icon={'eva:search-fill'}
-                sx={{ color: 'text.disabled', width: 20, height: 20 }}
-              />
-            </InputAdornment>
-          ),
-        }}
-      />
     </Stack>
-  );
+  )
 }

@@ -1,7 +1,7 @@
 // @mui
-import { enUS } from '@mui/material/locale';
+import { enUS } from '@mui/material/locale'
 // components
-import { SettingsValueProps } from './components/settings/type';
+import { SettingsValueProps } from './components/settings/type'
 
 // LAYOUT
 // ----------------------------------------------------------------------
@@ -11,7 +11,7 @@ export const HEADER = {
   MAIN_DESKTOP_HEIGHT: 88,
   DASHBOARD_DESKTOP_HEIGHT: 92,
   DASHBOARD_DESKTOP_OFFSET_HEIGHT: 92 - 32,
-};
+}
 
 export const NAVBAR = {
   BASE_WIDTH: 260,
@@ -21,12 +21,12 @@ export const NAVBAR = {
   DASHBOARD_ITEM_ROOT_HEIGHT: 48,
   DASHBOARD_ITEM_SUB_HEIGHT: 40,
   DASHBOARD_ITEM_HORIZONTAL_HEIGHT: 32,
-};
+}
 
 export const ICON = {
   NAVBAR_ITEM: 22,
   NAVBAR_ITEM_HORIZONTAL: 20,
-};
+}
 
 // SETTINGS
 // Please remove `localStorage` when you change settings.
@@ -37,9 +37,9 @@ export const defaultSettings: SettingsValueProps = {
   themeDirection: 'ltr',
   themeContrast: 'default',
   themeLayout: 'horizontal',
-  themeColorPresets: 'blue',
+  themeColorPresets: 'default',
   themeStretch: false,
-};
+}
 
 // MULTI LANGUAGES
 // Please remove `localStorage` when you change settings.
@@ -52,6 +52,6 @@ export const allLangs = [
     systemValue: enUS,
     icon: '/assets/icons/flags/ic_flag_en.svg',
   },
-];
+]
 
-export const defaultLang = allLangs[0]; // English
+export const defaultLang = allLangs[0] // English
