@@ -6,14 +6,17 @@ import { Grid, Stack } from '@mui/material'
 import api from 'src/services/axios'
 import AuthContext from 'src/contexts/AuthContext'
 import { useParams } from 'react-router'
-import { BetType } from 'src/@types/Bet.types'
+import { Bet as BetDataType, BetType } from 'src/@types/Bet.types'
 import BetItem from 'src/components/BetItem/BetItem'
+import { DialogAnimate } from 'src/components/animate'
+import BetModal from './BetModal'
 const Bet = () => {
   const { leagueId, userId } = useParams()
 
   const { token } = React.useContext(AuthContext)
   const [betData, setBetData] = React.useState<BetType>()
-
+  const [openModal, setOpenModal] = React.useState(false)
+  const [match, setMatch] = React.useState<BetDataType | null>()
   const fetchBets = () => {
     api
       .get(`/bets/${leagueId}/${userId}?token=${token.token}&login=${token.login}`)
@@ -27,7 +30,16 @@ const Bet = () => {
 
   React.useEffect(() => {
     fetchBets()
-  }, [])
+  }, [match])
+
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
+
+  const handleOpenModal = (match: BetDataType) => {
+    setMatch(match)
+    setOpenModal(true)
+  }
 
   return (
     <Page title='Bets'>
@@ -40,12 +52,23 @@ const Bet = () => {
           <Grid item xs={12} md={12} lg={12}>
             <Stack spacing={3}>
               {betData?.bets.map((bet) => (
-                <BetItem key={bet.date} bet={bet} />
+                <BetItem
+                  style={{ pointerEvents: bet.editable ? 'auto' : 'none' }}
+                  onClick={() => handleOpenModal(bet)}
+                  key={bet.matchId}
+                  bet={bet}
+                />
               ))}
             </Stack>
           </Grid>
         </Grid>
       </Container>
+
+      {openModal && match && (
+        <DialogAnimate open={openModal} onClose={handleCloseModal}>
+          <BetModal match={match} setMatch={setMatch} onClose={handleCloseModal} />
+        </DialogAnimate>
+      )}
     </Page>
   )
 }

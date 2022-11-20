@@ -46,6 +46,24 @@ const UserBet = ({ position, userRanking, title, subheader, ...props }: UserBetP
     >
       <Stack spacing={1} sx={{ p: 3 }}>
         <Stack direction='row' alignItems='center' spacing={2}>
+          <Box
+            style={{
+              backgroundColor: '#027b5b',
+              width: 30,
+              height: 30,
+              padding: 10,
+              borderRadius: 15,
+              display: 'flex',
+              justifyContent: 'center',
+              alignContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Typography variant='subtitle2' fontWeight='bold' color='#f9c626'>
+              {position}
+            </Typography>
+          </Box>
+
           <Avatar alt={userRanking.userId} src={userRanking?.thumb ?? defaultThumb} />
 
           <Box sx={{ flexGrow: 1 }}>

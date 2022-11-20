@@ -1,49 +1,40 @@
 import React from 'react'
-import { Chip, Card, CardContent, Box, Paper, Typography } from '@mui/material'
+import { Chip, Card, CardContent, Box, Typography, CardProps, Grid } from '@mui/material'
 import { Bet } from 'src/@types/Bet.types'
 import { Countries } from 'src/constants/teams'
+import { getIcon } from 'src/utils/getItem'
 
-interface BetItemProps {
+interface BetItemProps extends CardProps {
   bet: Bet
 }
 
-const BetItem = ({ bet }: BetItemProps) => {
-  const getIcon = (name: string) => (
-    <Box justifyContent='center' display='flex'>
-      <Box
-        component='img'
-        src={`/countries/${name}.svg`}
-        alt={name}
-        sx={{ width: 60, height: 60 }}
-      />
-    </Box>
-  )
+const BetItem = ({ bet, ...props }: BetItemProps) => {
+  const [hover, setHover] = React.useState(false)
 
   const matchSplit = bet.matchId.split('-')
   return (
-    <Card>
+    <Card
+      sx={{
+        cursor: 'pointer',
+        '&:hover': {
+          border: '2px solid #f9c626',
+        },
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      {...props}
+    >
       <CardContent>
-        <Box
-          sx={{
-            gap: 3,
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            justifyContent: 'center',
-            alignItems: 'center',
-            display: 'flex',
-          }}
-        >
-          <Paper
-            variant='outlined'
-            sx={{
-              py: 2.5,
-              textAlign: 'center',
-              flex: 1,
-              flexDirection: 'row',
-              display: 'flex',
-              justifyContent: 'space-around',
-            }}
+        <Grid container>
+          <Grid
+            item
+            xs={4}
+            display='flex'
+            justifyContent='center'
+            alignContent='center'
+            alignItems='center'
           >
-            <Box pl={5}>
+            <Box pl={5} textAlign='center'>
               <Box sx={{ mb: 0.5 }}>{getIcon(matchSplit[0])}</Box>
 
               <Typography variant='h5'>{bet.home}</Typography>
@@ -51,14 +42,39 @@ const BetItem = ({ bet }: BetItemProps) => {
                 {Countries[matchSplit[0] as keyof typeof Countries]}
               </Typography>
             </Box>
-            <Box>
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            display='flex'
+            justifyContent='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Box style={{ textAlign: 'center' }}>
               <Chip label={bet.date} variant='filled' />
-              <Typography variant='h3' sx={{ color: 'text.secondary' }}>
+              <Typography variant='h3' sx={{ color: 'text.secondary', textAlign: 'center' }}>
                 x
               </Typography>
-              <Chip label={`${bet.score} pontos`} color='info' variant='filled' />
+              <Chip
+                label={`${bet.score} pontos`}
+                style={{
+                  backgroundColor: !bet.editable ? '#027b5b' : '#f9c626',
+                  color: !bet.editable ? '#FFF' : '#027b5b',
+                }}
+                variant='filled'
+              />
             </Box>
-            <Box pr={5}>
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            display='flex'
+            justifyContent='center'
+            alignContent='center'
+            alignItems='center'
+          >
+            <Box pr={5} textAlign='center'>
               <Box sx={{ mb: 0.5 }}>{getIcon(matchSplit[1])}</Box>
 
               <Typography variant='h5'>{bet.visitors}</Typography>
@@ -66,8 +82,8 @@ const BetItem = ({ bet }: BetItemProps) => {
                 {Countries[matchSplit[1] as keyof typeof Countries]}
               </Typography>
             </Box>
-          </Paper>
-        </Box>
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   )

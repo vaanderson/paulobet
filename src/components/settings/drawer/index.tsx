@@ -1,27 +1,26 @@
-import { AnimatePresence, m } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { AnimatePresence, m } from 'framer-motion'
+import { useState, useEffect } from 'react'
 // @mui
-import { alpha, styled } from '@mui/material/styles';
-import { Stack, Divider, Backdrop, Typography, IconButton } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles'
+import { Stack, Divider, Backdrop, Typography, IconButton } from '@mui/material'
 // hooks
-import useSettings from '../../../hooks/useSettings';
+import useSettings from '../../../hooks/useSettings'
 // utils
-import cssStyles from '../../../utils/cssStyles';
+import cssStyles from '../../../utils/cssStyles'
 // config
-import { NAVBAR, defaultSettings } from '../../../config';
+import { NAVBAR, defaultSettings } from '../../../config'
 //
-import Iconify from '../../Iconify';
-import Scrollbar from '../../Scrollbar';
-import { varFade } from '../../animate';
+import Iconify from '../../Iconify'
+import Scrollbar from '../../Scrollbar'
+import { varFade } from '../../animate'
 //
-import ToggleButton from './ToggleButton';
-import SettingMode from './SettingMode';
-import SettingLayout from './SettingLayout';
-import SettingStretch from './SettingStretch';
-import SettingContrast from './SettingContrast';
-import SettingDirection from './SettingDirection';
-import SettingFullscreen from './SettingFullscreen';
-import SettingColorPresets from './SettingColorPresets';
+import ToggleButton from './ToggleButton'
+import SettingMode from './SettingMode'
+import SettingLayout from './SettingLayout'
+import SettingStretch from './SettingStretch'
+import SettingContrast from './SettingContrast'
+import SettingFullscreen from './SettingFullscreen'
+import SettingColorPresets from './SettingColorPresets'
 
 // ----------------------------------------------------------------------
 
@@ -41,9 +40,9 @@ const RootStyle = styled(m.div)(({ theme }) => ({
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
   boxShadow: `-24px 12px 32px -4px ${alpha(
     theme.palette.mode === 'light' ? theme.palette.grey[500] : theme.palette.common.black,
-    0.16
+    0.16,
   )}`,
-}));
+}))
 
 // ----------------------------------------------------------------------
 
@@ -56,9 +55,9 @@ export default function SettingsDrawer() {
     themeDirection,
     themeColorPresets,
     onResetSetting,
-  } = useSettings();
+  } = useSettings()
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const notDefault =
     themeMode !== defaultSettings.themeMode ||
@@ -66,7 +65,7 @@ export default function SettingsDrawer() {
     themeStretch !== defaultSettings.themeStretch ||
     themeContrast !== defaultSettings.themeContrast ||
     themeDirection !== defaultSettings.themeDirection ||
-    themeColorPresets !== defaultSettings.themeColorPresets;
+    themeColorPresets !== defaultSettings.themeColorPresets
 
   const varSidebar =
     themeDirection !== 'rtl'
@@ -79,23 +78,23 @@ export default function SettingsDrawer() {
           distance: NAVBAR.BASE_WIDTH,
           durationIn: 0.32,
           durationOut: 0.32,
-        }).inLeft;
+        }).inLeft
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
-  }, [open]);
+  }, [open])
 
   const handleToggle = () => {
-    setOpen((prev) => !prev);
-  };
+    setOpen((prev) => !prev)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <>
@@ -112,13 +111,13 @@ export default function SettingsDrawer() {
           <>
             <RootStyle {...varSidebar}>
               <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
+                direction='row'
+                alignItems='center'
+                justifyContent='space-between'
                 sx={{ py: 2, pr: 1, pl: 2.5 }}
               >
-                <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
-                  Settings
+                <Typography variant='subtitle1' sx={{ flexGrow: 1 }}>
+                  Configurações
                 </Typography>
 
                 <IconButton onClick={onResetSetting}>
@@ -135,32 +134,27 @@ export default function SettingsDrawer() {
               <Scrollbar sx={{ flexGrow: 1 }}>
                 <Stack spacing={3} sx={{ p: 3 }}>
                   <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Mode</Typography>
+                    <Typography variant='subtitle2'>Modo</Typography>
                     <SettingMode />
                   </Stack>
 
                   <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Contrast</Typography>
+                    <Typography variant='subtitle2'>Contraste</Typography>
                     <SettingContrast />
                   </Stack>
 
                   <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Direction</Typography>
-                    <SettingDirection />
-                  </Stack>
-
-                  <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Layout</Typography>
+                    <Typography variant='subtitle2'>Layout</Typography>
                     <SettingLayout />
                   </Stack>
 
                   <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Presets</Typography>
+                    <Typography variant='subtitle2'>Presets</Typography>
                     <SettingColorPresets />
                   </Stack>
 
                   <Stack spacing={1.5}>
-                    <Typography variant="subtitle2">Stretch</Typography>
+                    <Typography variant='subtitle2'>Stretch</Typography>
                     <SettingStretch />
                   </Stack>
 
@@ -172,5 +166,5 @@ export default function SettingsDrawer() {
         )}
       </AnimatePresence>
     </>
-  );
+  )
 }
