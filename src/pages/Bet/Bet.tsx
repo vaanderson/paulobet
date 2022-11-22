@@ -5,12 +5,14 @@ import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs'
 import { Grid, Stack } from '@mui/material'
 import api from 'src/services/axios'
 import AuthContext from 'src/contexts/AuthContext'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { Bet as BetDataType, BetType } from 'src/@types/Bet.types'
 import BetItem from 'src/components/BetItem/BetItem'
 import { DialogAnimate } from 'src/components/animate'
 import BetModal from './BetModal'
+import BackButton from 'src/components/BackButton'
 const Bet = () => {
+  const navigate = useNavigate()
   const { leagueId, userId } = useParams()
 
   const { token } = React.useContext(AuthContext)
@@ -44,9 +46,10 @@ const Bet = () => {
   return (
     <Page title='Bets'>
       <Container>
+        <BackButton onClick={() => navigate(`/ranking/${leagueId}`)} />
         <HeaderBreadcrumbs
           heading='Bet'
-          links={[{ name: 'Bolão', href: '/' }, { name: 'Bets' }, { name: userId ?? '' }]}
+          links={[{ name: 'Bolão', href: '/' }, { name: 'Bet', href: '/' }, { name: 'Ranking', href: `/ranking/${leagueId}` }, { name: userId ?? '' }]}
         />
         <Grid container>
           <Grid item xs={12} md={12} lg={12}>

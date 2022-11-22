@@ -9,6 +9,7 @@ import AuthContext from 'src/contexts/AuthContext'
 import { LeaguesType } from 'src/@types/Leagues.types'
 import { useNavigate } from 'react-router'
 import Card from '@mui/material/Card'
+import BackButton from 'src/components/BackButton'
 
 const Dashboard = () => {
   const navigate = useNavigate()
@@ -38,6 +39,7 @@ const Dashboard = () => {
           heading='Bolão'
           links={[{ name: 'Bolão', href: '/' }, { name: 'Todos' }]}
         />
+
         <Grid container>
           <Grid item xs={12} md={12} lg={12}>
             <Card>

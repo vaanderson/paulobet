@@ -12,6 +12,8 @@ import orderBy from 'lodash/orderBy'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import { Icon } from '@iconify/react'
+import BackButton from 'src/components/BackButton'
+import FloatActions from 'src/components/FloatActions'
 
 const Ranking = () => {
   const { leagueId } = useParams()
@@ -35,12 +37,18 @@ const Ranking = () => {
     fetchRanking()
   }, [])
 
+  const handleNavigateBet = () => {
+    navigate(`/bets/${leagueId}/${token.login}`)
+  }
+
+
   return (
     <Page title='Ranking'>
       <Container>
+        <BackButton onClick={() => navigate('/')} />
         <HeaderBreadcrumbs
           heading='Ranking'
-          links={[{ name: 'Bolão', href: '/' }, { name: 'Rankings' }, { name: 'Todos' }]}
+          links={[{ name: 'Bolão', href: '/' }, { name: 'Bet', href: '/' }, { name: 'Ranking' }]}
         />
         <Grid container>
           <Grid item xs={12} mb={5}>
@@ -72,7 +80,13 @@ const Ranking = () => {
                 ))}
             </Stack>
           </Grid>
+
         </Grid>
+        <FloatActions
+          refresh={fetchRanking}
+          bet={handleNavigateBet}
+        />
+
       </Container>
     </Page>
   )

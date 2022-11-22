@@ -35,8 +35,11 @@ const Router = () => {
       if (localStorage.getItem('@user')) {
         setToken(JSON.parse(localStorage.getItem('@user') as string))
         setLoading(false)
-
-        navigate('/')
+        if (location.pathname === '/login') {
+          navigate('/')
+        } else {
+          navigate(location.pathname)
+        }
       } else {
         navigate('/login')
         setLoading(false)
