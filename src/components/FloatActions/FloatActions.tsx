@@ -19,6 +19,24 @@ const FloatActions = ({ refresh, bet }: FloatActionsProps) => {
   ];
   return (
     <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1, position: 'fixed', bottom: '-100px', right: 25 }}>
+      <SpeedDial
+        ariaLabel="SpeedDial"
+        icon={<SpeedDialIcon openIcon={<Icon icon="material-symbols:close" width={25} height={25} />} />}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            style={{
+              width: 60,
+              height: 60
+            }}
+            title={action.name}
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={action.action}
+          />
+        ))}
+      </SpeedDial>
     </Box>
   );
 }
