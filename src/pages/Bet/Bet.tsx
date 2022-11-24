@@ -75,7 +75,7 @@ const Bet = () => {
         item.homeLabel?.toLowerCase().includes(searchBet.toLowerCase()) ||
         item.visitorsLabel?.toLowerCase().includes(searchBet.toLowerCase()),
     )
-    .filter((item) =>
+    ?.filter((item) =>
       item.status
         ?.toLocaleLowerCase()
         .includes(statusSelect === 'ALL' ? '' : statusSelect.toLowerCase()),
@@ -100,10 +100,6 @@ const Bet = () => {
       label: 'Finalizados',
     },
   ] as Option[]
-
-  React.useEffect(() => {
-    console.log(betDataFilter)
-  }, [])
 
   return (
     <Page title='Bets'>
