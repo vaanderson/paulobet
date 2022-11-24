@@ -98,6 +98,18 @@ const Bet = () => {
       </Backdrop>
     )
 
+  const filter = betDataFilter
+    ?.filter(
+      (item) =>
+        item.homeLabel?.toLowerCase().includes(searchBet.toLowerCase()) ||
+        item.visitorsLabel?.toLowerCase().includes(searchBet.toLowerCase()),
+    )
+    ?.filter((item) =>
+      item.status
+        ?.toLocaleLowerCase()
+        .includes(statusSelect === 'ALL' ? '' : statusSelect.toLowerCase()),
+    )
+
   return (
     <Page title='Bets'>
       <Container>
@@ -184,10 +196,11 @@ const Bet = () => {
                     bet={bet}
                   />
                 ))}
-              {/* 
-<Alert severity='warning' style={{ textAlign: 'center' }}>
+              {!filter?.length && (
+                <Alert severity='warning' style={{ textAlign: 'center' }}>
                   Nenhum resultado encontrado.
-                </Alert> */}
+                </Alert>
+              )}
             </Stack>
           </Grid>
         </Grid>
