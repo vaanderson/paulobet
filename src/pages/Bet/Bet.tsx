@@ -59,28 +59,17 @@ const Bet = () => {
     setOpenModal(true)
   }
 
-  const betDataFilter = betData?.bets
-    ?.map((bet) => {
-      const matchSplit = bet.matchId.split('-')
-      return {
-        ...bet,
-        homeLabel: Countries[matchSplit[0] as keyof typeof Countries],
-        homeValue: matchSplit[0],
-        visitorsLabel: Countries[matchSplit[1] as keyof typeof Countries],
-        visitorsValue: matchSplit[1],
-        status: getStatusDate(bet.date),
-      }
-    })
-    ?.filter(
-      (item) =>
-        item.homeLabel?.toLowerCase().includes(searchBet.toLowerCase()) ||
-        item.visitorsLabel?.toLowerCase().includes(searchBet.toLowerCase()),
-    )
-    ?.filter((item) =>
-      item.status
-        ?.toLocaleLowerCase()
-        .includes(statusSelect === 'ALL' ? '' : statusSelect.toLowerCase()),
-    )
+  const betDataFilter = betData?.bets?.map((bet) => {
+    const matchSplit = bet.matchId.split('-')
+    return {
+      ...bet,
+      homeLabel: Countries[matchSplit[0] as keyof typeof Countries],
+      homeValue: matchSplit[0],
+      visitorsLabel: Countries[matchSplit[1] as keyof typeof Countries],
+      visitorsValue: matchSplit[1],
+      status: getStatusDate(bet.date),
+    }
+  })
 
   const options = [
     {
@@ -176,20 +165,29 @@ const Bet = () => {
           </Grid>
           <Grid item xs={12} md={12} lg={12}>
             <Stack spacing={3}>
-              {betDataFilter?.length ? (
-                betDataFilter.map((bet) => (
+              {betDataFilter
+                ?.filter(
+                  (item) =>
+                    item.homeLabel?.toLowerCase().includes(searchBet.toLowerCase()) ||
+                    item.visitorsLabel?.toLowerCase().includes(searchBet.toLowerCase()),
+                )
+                ?.filter((item) =>
+                  item.status
+                    ?.toLocaleLowerCase()
+                    .includes(statusSelect === 'ALL' ? '' : statusSelect.toLowerCase()),
+                )
+                .map((bet) => (
                   <BetItem
                     style={{ pointerEvents: bet.editable ? 'auto' : 'none' }}
                     onClick={() => handleOpenModal(bet)}
                     key={bet.matchId}
                     bet={bet}
                   />
-                ))
-              ) : (
-                <Alert severity='warning' style={{ textAlign: 'center' }}>
+                ))}
+              {/* 
+<Alert severity='warning' style={{ textAlign: 'center' }}>
                   Nenhum resultado encontrado.
-                </Alert>
-              )}
+                </Alert> */}
             </Stack>
           </Grid>
         </Grid>
