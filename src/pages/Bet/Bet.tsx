@@ -118,6 +118,7 @@ const Bet = () => {
           <Grid item xs={12} mb={5}>
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
               <TextField
+                autoComplete='off'
                 fullWidth
                 select
                 label='Status'
@@ -150,6 +151,7 @@ const Bet = () => {
                 ))}
               </TextField>
               <TextField
+                autoComplete='off'
                 fullWidth
                 onChange={(event) => setSearchBet(event.target.value)}
                 id='input-with-icon-textfield'

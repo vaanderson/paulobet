@@ -66,6 +66,7 @@ const Ranking = () => {
         <Grid container>
           <Grid item xs={12} mb={5}>
             <TextField
+              autoComplete='off'
               fullWidth
               onChange={(event) => setUserSearch(event.target.value)}
               id='input-with-icon-textfield'

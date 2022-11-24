@@ -143,7 +143,7 @@ const Login = () => {
                   <Alert severity='error'>{errors.afterSubmit.message}</Alert>
                 )}
 
-                <RHFTextField name='login' label='Usuário' />
+                <RHFTextField autoComplete='off' name='login' label='Usuário' />
 
                 <RHFTextField
                   name='password'
