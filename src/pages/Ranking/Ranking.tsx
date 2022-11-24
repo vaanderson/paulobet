@@ -10,10 +10,14 @@ import { RankingType } from 'src/@types/Rankings.types'
 import UserBet from 'src/components/UserBet'
 import orderBy from 'lodash/orderBy'
 import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+
 import InputAdornment from '@mui/material/InputAdornment'
 import { Icon } from '@iconify/react'
 import BackButton from 'src/components/BackButton'
 import FloatActions from 'src/components/FloatActions'
+import Iconify from 'src/components/Iconify'
+import { Link as RouterLink } from 'react-router-dom'
 
 const Ranking = () => {
   const { leagueId } = useParams()
@@ -41,7 +45,6 @@ const Ranking = () => {
     navigate(`/bets/${leagueId}/${token.login}`)
   }
 
-
   return (
     <Page title='Ranking'>
       <Container>
@@ -49,6 +52,16 @@ const Ranking = () => {
         <HeaderBreadcrumbs
           heading='Ranking'
           links={[{ name: 'Bolão', href: '/' }, { name: 'Bet', href: '/' }, { name: 'Ranking' }]}
+          action={
+            <Button
+              variant='contained'
+              component={RouterLink}
+              to={`/bets/${leagueId}/${token.login}`}
+              startIcon={<Iconify icon={'eva:plus-fill'} />}
+            >
+              Meus palpites
+            </Button>
+          }
         />
         <Grid container>
           <Grid item xs={12} mb={5}>
@@ -80,13 +93,8 @@ const Ranking = () => {
                 ))}
             </Stack>
           </Grid>
-
         </Grid>
-        <FloatActions
-          refresh={fetchRanking}
-          bet={handleNavigateBet}
-        />
-
+        <FloatActions refresh={fetchRanking} bet={handleNavigateBet} />
       </Container>
     </Page>
   )

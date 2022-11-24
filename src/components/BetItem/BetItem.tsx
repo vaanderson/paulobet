@@ -3,6 +3,7 @@ import { Chip, Card, CardContent, Box, Typography, CardProps, Grid } from '@mui/
 import { Bet } from 'src/@types/Bet.types'
 import { Countries } from 'src/constants/teams'
 import { getIcon } from 'src/utils/getItem'
+import pt, { addHours, format } from 'date-fns'
 
 interface BetItemProps extends CardProps {
   bet: Bet
@@ -12,6 +13,17 @@ const BetItem = ({ bet, ...props }: BetItemProps) => {
   const [hover, setHover] = React.useState(false)
 
   const matchSplit = bet.matchId.split('-')
+
+  const validateData = () => {
+    const betDateSplit = bet.date.split(' ')
+    const betDateCurrent = `${betDateSplit[0]}-${new Date().getFullYear()} ${betDateSplit[1]}`
+    const today = new Date().getTime()
+    const from = new Date(betDateCurrent).getTime()
+    const to = new Date(addHours(new Date(betDateCurrent), 2)).getTime()
+
+    return today >= from && today <= to ? true : false
+  }
+
   return (
     <Card
       sx={{
@@ -26,6 +38,12 @@ const BetItem = ({ bet, ...props }: BetItemProps) => {
     >
       <CardContent>
         <Grid container>
+          {validateData() && (
+            <Box position='absolute'>
+              <Chip color='error' label='Live' variant='filled' />
+            </Box>
+          )}
+
           <Grid
             item
             xs={4}
