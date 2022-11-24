@@ -3,7 +3,7 @@ import React from 'react'
 import Page from 'src/components/Page'
 import Container from '@mui/material/Container'
 import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs'
-import { Alert, Grid, Stack } from '@mui/material'
+import { Alert, CircularProgress, Grid, Stack, Backdrop } from '@mui/material'
 import api from 'src/services/axios'
 import AuthContext from 'src/contexts/AuthContext'
 import { useNavigate, useParams } from 'react-router'
@@ -19,6 +19,7 @@ import { Icon } from '@iconify/react'
 import MenuItem from '@mui/material/MenuItem'
 import { m } from 'framer-motion'
 import getStatusDate from 'src/utils/getStatusDate'
+import LoadingScreen from 'src/components/LoadingScreen'
 
 interface Option {
   label: string
@@ -100,6 +101,13 @@ const Bet = () => {
       label: 'Finalizados',
     },
   ] as Option[]
+
+  if (!betData)
+    return (
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={!betData}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
+    )
 
   return (
     <Page title='Bets'>
